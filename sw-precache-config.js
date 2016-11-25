@@ -8,10 +8,18 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 module.exports = {
-  // staticFileGlobs: [
-  //   '/index.html',
-  //   '/manifest.json',
-  //   '/bower_components/webcomponentsjs/webcomponents-lite.min.js'
-  // ],
-  navigateFallback: '/index.html'
+  staticFileGlobs: [
+    '/index.html',
+    '/manifest.json',
+    '/bower_components/webcomponentsjs/webcomponents-lite.min.js'
+  ],
+  navigateFallback: '/index.html',
+  navigateFallbackWhitelist: [/^(?!\/__)/],
+  runtimeCaching: [
+    {
+      // cache Google user profile pics
+      urlPattern: /^https:\/\/lh3.googleusercontent.com\/.*/,
+      handler: 'networkFirst'
+    }
+  ]
 };
