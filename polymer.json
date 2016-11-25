@@ -3,8 +3,8 @@
   "shell": "core/pwa-demo-app-shell.html",
   "fragments": [
     "pages/home-page/home-page.html",
-    "pages/view-three-page/view-three-page.html",
-    "pages/view-two-page/view-two-page.html",
+    "pages/edit-page/edit-page.html",
+    "pages/view-page/view-page.html",
     "pages/not-authorized-page/not-authorized-page.html",
     "pages/not-found-page/not-found-page.html"
   ],
