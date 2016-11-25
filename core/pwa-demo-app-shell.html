@@ -25,8 +25,8 @@ Wham! It's all awesome now!
   <!-- Lazy loaded dependencies -->
   <!-- LAZY LOADER STARTS HERE -->
   <link rel="lazy-import" href="/pages/home-page/home-page.html" group="home-page">
-  <link rel="lazy-import" href="/pages/view-two-page/view-two-page.html" group="view-two-page">
-  <link rel="lazy-import" href="/pages/view-three-page/view-three-page.html" group="view-three-page">
+  <link rel="lazy-import" href="/pages/view-page/view-page.html" group="view-page">
+  <link rel="lazy-import" href="/pages/edit-page/edit-page.html" group="edit-page">
   <link rel="lazy-import" href="/pages/not-authorized-page/not-authorized-page.html" group="not-authorized-page">
   <link rel="lazy-import" href="/pages/not-found-page/not-found-page.html" group="not-found-page">
   <!-- LAZY LOADER ENDS HERE -->
@@ -53,8 +53,8 @@ Wham! It's all awesome now!
 
         <!-- ROUTER STARTS HERE -->
         <home-page route="/"></home-page>
-        <view-two-page route="/view-two"></view-two-page>
-        <view-three-page route="/view-three"></view-three-page>
+        <view-page route="/view/:id"></view-page>
+        <edit-page route="/edit/:id"></edit-page>
         <not-authorized-page route="not-authorized"></not-authorized-page>
         <not-found-page route="not-found"></not-found-page>
         <!-- ROUTER ENDS HERE -->
@@ -78,14 +78,6 @@ Wham! It's all awesome now!
               {
                 label: 'Home',
                 url: '/'
-              },
-              {
-                label: 'View Two',
-                url: '/view-two'
-              },
-              {
-                label: 'View Three',
-                url: '/view-three'
               }
             ];
           }
