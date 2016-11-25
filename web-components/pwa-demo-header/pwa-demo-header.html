@@ -6,6 +6,11 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../pwa-demo-icons/pwa-demo-icons.html">
 
+<!-- SECOND: Firebase auth -->
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
 <!-- Style dependency -->
 <link rel="import" href="pwa-demo-header-style.html">
 
@@ -16,6 +21,10 @@
         display: block;
       }
     </style>
+    
+    <!-- SECOND: Firebase auth -->
+    <firebase-auth id="auth" user="{{user}}" provider="google" >
+    </firebase-auth>
 
     <!-- then the app-header -->
     <app-header>
@@ -25,17 +34,57 @@
           on-tap="_toggleDrawer">
         </paper-icon-button>
         <div main-title>PWA demo</div>
+        
+        <!-- SECOND: Firebase auth -->
+        <template is="dom-if" if="[[!user]]">
+          <paper-button on-tap="login">
+            Login
+          </paper-button>
+        </template>
+        
+        <template is="dom-if" if="[[user]]">
+          <paper-button on-tap="logout">
+            Logout
+          </paper-button>
+        </template>
       </app-toolbar>
     </app-header>
+    
+    <!-- SECOND: MESSAGE -->
+    <paper-toast id="toaster"></paper-toast>
   </template>
 
   <script>
     Polymer({
       is: 'pwa-demo-header',
 
+      // SECOND: Firebase auth
+      properties: {
+        user: {
+          type: Object,
+          notify: true,
+          value: false
+        }
+      },
+
       _toggleDrawer: function() {
         this.fire('toggle-drawer');
+      },
+      
+      // SECOND Firebase sign in
+      login: function() {
+        this.$$('#auth').signInWithPopup().then((result) => {
+          this.$$('#toaster').show('Hello ' + result.user.displayName);
+        });
+      },
+      
+      logout: function() {
+        this.$$('#auth').signOut().then(() => {
+          this.$.toaster.show('Goodbye!')
+        })
       }
+      
+      
     });
   </script>
 </dom-module>

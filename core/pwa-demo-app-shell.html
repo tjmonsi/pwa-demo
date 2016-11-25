@@ -67,8 +67,10 @@ Wham! It's all awesome now!
 
         <!-- ROUTER STARTS HERE -->
         <home-page route="/"></home-page>
-        <view-page route="/view/:id"></view-page>
-        <edit-page route="/edit/:id"></edit-page>
+        
+        <!-- SECOND: ADD USER -->
+        <view-page route="/view/:id" user="[[user]]"></view-page>
+        <edit-page route="/edit/:id" user="[[user]]" auth="[[user]]"></edit-page>
         <not-authorized-page route="not-authorized"></not-authorized-page>
         <not-found-page route="not-found"></not-found-page>
         <!-- ROUTER ENDS HERE -->
@@ -98,6 +100,11 @@ Wham! It's all awesome now!
           type: Object,
           readOnly: true,
           value: function() { return config; }
+        },
+        
+        //<!-- SECOND: ADD USER -->
+        user: {
+          type: Object
         },
         
         navigationList: {
