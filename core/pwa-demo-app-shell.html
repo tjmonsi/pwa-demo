@@ -70,7 +70,7 @@ Wham! It's all awesome now!
         
         <!-- SECOND: ADD USER -->
         <view-page route="/view/:id" user="[[user]]"></view-page>
-        <edit-page route="/edit/:id" user="[[user]]" auth="[[user]]"></edit-page>
+        <edit-page route="/edit/:id" user="[[user]]" auth="[[signedIn]]"></edit-page>
         <not-authorized-page route="not-authorized"></not-authorized-page>
         <not-found-page route="not-found"></not-found-page>
         <!-- ROUTER ENDS HERE -->
@@ -104,7 +104,13 @@ Wham! It's all awesome now!
         
         //<!-- SECOND: ADD USER -->
         user: {
-          type: Object
+          type: Object,
+          observer: '_authChanged'
+        },
+        
+        signedIn: {
+          type: Boolean,
+          value: false
         },
         
         navigationList: {
@@ -122,6 +128,10 @@ Wham! It's all awesome now!
         scrollProgress: {
           type: Number
         }
+      },
+      
+      _authChanged: function(user) {
+        this.signedIn = !!user;
       },
 
       ready: function() {
