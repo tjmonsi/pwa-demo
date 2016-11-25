@@ -17,17 +17,22 @@
       data="{{article}}"
     ></firebase-document>
     
-    <h1>[[article.title]]</h1>
-    <marked-element markdown="[[article.body]]">
-      <div class="markdown-html"></div>
-    </marked-element>
+    <template is="dom-if" if="[[article]]">
+      <h1>[[article.title]]</h1>
+      <marked-element markdown="[[article.body]]">
+        <div class="markdown-html"></div>
+      </marked-element>
+      
+      <a href="/">
+        <paper-button raised>
+          Back
+        </paper-button>
+      </a>  
+    </template>
     
-    <a href="/">
-      <paper-button raised>
-        Back
-      </paper-button>
-    </a>
-    
+    <template is="dom-if" if="[[!article]]">
+      Loading...
+    </template>
     <template is="dom-if" if="[[user]]">
       <a href="/edit/[[articleId]]">
         <paper-button raised>
@@ -39,7 +44,14 @@
 
   <script>
     Polymer({
-      is: 'pwa-15-article'
+      is: 'pwa-15-article',
+      
+      properties: {
+        article: {
+          type: Object,
+          value: null
+        }
+      }
     });
   </script>
 </dom-module>
