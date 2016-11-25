@@ -3,6 +3,12 @@
 <link rel="import" href="../bower_components/qairoe-app-layout/qairoe-app-layout.html">
 <link rel="import" href="../bower_components/qairoe-app-router/qairoe-app-router.html">
 
+<!-- FIRST: Include Firebase dependencies -->
+<link rel="import" href="../bower_components/polymerfire/firebase-app-script.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth-script.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-database-script.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+
 <!-- Custom Element dependencies -->
 
 <link rel="import" href="../web-components/pwa-demo-header/pwa-demo-header.html">
@@ -34,6 +40,14 @@ Wham! It's all awesome now!
   <template>
     <style is="custom-style">
     </style>
+    
+    <!-- FIRST: Insert Firebase app here --> 
+    <firebase-app 
+      auth-domain="[[config.authDomain]]"
+      database-url="[[config.databaseURL]]"
+      api-key="[[config.apiKey]]">
+    </firebase-app>
+
 
     <qairoe-app-layout scroll-progress="{{scrollProgress}}">
 
@@ -65,11 +79,27 @@ Wham! It's all awesome now!
   </template>
   <script>
     /*global Polymer*/
+    
+    // FIRST: Insert Firebase config here
+    var config = {
+      apiKey: "AIzaSyB1WgnMXnfT9A1opXFa1q0N8jFa4PTqDTA",
+      authDomain: "pwa-15-proper.firebaseapp.com",
+      databaseURL: "https://pwa-15-proper.firebaseio.com",
+      storageBucket: "pwa-15-proper.appspot.com",
+      messagingSenderId: "854367278540"
+    };
 
     Polymer({
       is: 'pwa-demo-app-shell',
 
       properties: {
+        // FIRST: Insert firebase config here for use
+        config: {
+          type: Object,
+          readOnly: true,
+          value: function() { return config; }
+        },
+        
         navigationList: {
           type: Array,
           readOnly: true,
