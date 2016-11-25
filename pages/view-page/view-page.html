@@ -1,23 +1,26 @@
 <!-- Polymer dependencies -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-
-<!-- Style dependency -->
-<link rel="import" href="view-page-style.html">
+<link rel="import" href="../../web-components/pwa-15-article/pwa-15-article.html">
 
 <dom-module id="view-page">
   <template>
-    <style is="custom-style" include="view-page-style">
+    <style is="custom-style">
       :host {
         display: block;
+        padding: 20px;
+      }
+      
+      a {
+        color: inherit;
+        text-decoration: none;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>View Two</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
+    <!-- FIFTH: ADD ARTICLE VIEWER -->
+    <template is="dom-if" if="[[params.id]]">
+      <pwa-15-article article-id="[[params.id]]" user="[[user]]"></pwa-15-article>
+    </template>
+    
   </template>
 
   <script>
