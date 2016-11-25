@@ -1,0 +1,43 @@
+<!-- Polymer dependencies -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+
+<dom-module id="pwa-15-form">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <template is="dom-if" if="[[user]]">
+        <firebase-document
+          path="/articles/[[articleId]]"
+          data="{{article}}"
+        ></firebase-document>
+        
+        <paper-input value="{{article.title}}" label="Title"></paper-input>
+        <paper-textarea value="{{article.body}}" label="Body"></paper-textarea>
+        
+        <a href="/">
+            <paper-button raised>
+              Back
+            </paper-button>
+          </a>  
+        
+        <a href="/view/[[articleId]]">
+            <paper-button raised>Close</paper-button>        
+        </a>
+    </template>
+    
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pwa-15-form'
+    });
+  </script>
+</dom-module>

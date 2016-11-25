@@ -1,23 +1,28 @@
 <!-- Polymer dependencies -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-
-<!-- Style dependency -->
-<link rel="import" href="edit-page-style.html">
+<link rel="import" href="../../web-components/pwa-15-article/pwa-15-article.html">
+<link rel="import" href="../../web-components/pwa-15-form/pwa-15-form.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="edit-page">
   <template>
-    <style is="custom-style" include="edit-page-style">
+    <style is="custom-style" include="iron-flex iron-flex-alignment">
       :host {
         display: block;
       }
+      
+      pwa-15-article, pwa-15-form {
+        min-width: 250px;
+      }
     </style>
 
-    <div class="card">
-      <div class="circle">3</div>
-      <h1>View Three</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
+    <template is="dom-if" if="[[params.id]]">
+      <div class="horizontal layout wrap">
+        <pwa-15-form class="flex" article-id="[[params.id]]" user="[[user]]"></pwa-15-form>
+        <pwa-15-article class="flex" article-id="[[params.id]]" user="[[user]]"></pwa-15-article>
+      </div>  
+    </template>
+    
   </template>
 
   <script>
