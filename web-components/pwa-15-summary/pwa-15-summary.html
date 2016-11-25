@@ -1,0 +1,43 @@
+<!-- Polymer dependencies -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
+
+<dom-module id="pwa-15-summary">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <firebase-document
+      path="/articles/[[articleId]]/title"
+      data="{{title}}"
+    ></firebase-document>
+    
+    <template is="dom-if" if="[[title]]">
+      <paper-material>
+        <h2>
+          [[title]]
+        </h2>
+        
+        <a href="/view/[[articleId]]">
+          <paper-button raised>Read</paper-button>  
+        </a>
+        <template is="dom-if" if="[[user]]">
+          <a href="/edit/[[articleId]]">
+            <paper-button raised>Edit</paper-button>  
+          </a>  
+        </template>
+      </paper-material>  
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pwa-15-summary'
+    });
+  </script>
+</dom-module>
