@@ -1,0 +1,31 @@
+// Put your mixins for PWA demo here
+
+@import 'variables'
+
+////////// Phone //////////
+@mixin phone {
+  @media (max-width: map-get($grid-breakpoints, phone) - 1) {
+    @content
+  }
+}
+
+////////// Tablet //////////
+@mixin tablet {
+  @media (min-width: map-get($grid-breakpoints, phone)) and (max-width: map-get($grid-breakpoints, tablet) - 1) {
+    @content;
+  }
+}
+
+////////// Small Desktop //////////
+@mixin smalldesktop {
+  @media (min-width: map-get($grid-breakpoints, tablet)) and (max-width: map-get($grid-breakpoints, smalldesktop) - 1) {
+    @content;
+  }
+}
+
+////////// Large Screen //////////
+@mixin largescreen {
+  @media (min-width: map-get($grid-breakpoints, smalldesktop) - 1) {
+    @content;
+  }
+}

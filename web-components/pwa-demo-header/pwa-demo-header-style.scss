@@ -1,0 +1,14 @@
+:host {
+  --app-primary-color: #4285f4;
+  --app-secondary-color: black;
+
+  display: block;
+}
+
+app-header {
+  color: #fff;
+  background-color: var(--app-primary-color);
+}
+app-header paper-icon-button {
+  --paper-icon-button-ink-color: white;
+}

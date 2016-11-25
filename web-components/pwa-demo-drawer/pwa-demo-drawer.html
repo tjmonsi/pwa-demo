@@ -1,0 +1,45 @@
+<!-- Polymer dependencies -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+
+<!-- Style dependency -->
+<link rel="import" href="pwa-demo-drawer-style.html">
+
+<dom-module id="pwa-demo-drawer">
+  <template>
+    <style is="custom-style" include="pwa-demo-drawer-style">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <app-drawer>
+      <app-toolbar>Menu</app-toolbar>
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <template is="dom-repeat" items="[[navigationList]]">
+          <a name$="[[item.page]]" href$="[[item.url]]" on-tap="toggleDrawer">
+            [[item.label]]
+          </a>
+        </template>
+
+      </iron-selector>
+    </app-drawer>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pwa-demo-drawer',
+
+      properties: {
+        navigationList: Array
+      },
+
+      toggleDrawer: function() {
+        this.$$('app-drawer').toggle();
+      }
+    });
+  </script>
+</dom-module>

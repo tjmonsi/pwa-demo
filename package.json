@@ -1,0 +1,39 @@
+{
+  "name": "pwa-demo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "polymer serve -H $IP -p $PORT",
+    "bundled": "polymer serve build/bundled -H $IP -p $PORT",
+    "unbundled": "polymer serve build/unbundled -H $IP -p $PORT",
+    "gulp": "$(npm bin)/gulp",
+    "watch": "$(npm bin)/gulp watch-all"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^2.2.1",
+    "fs": "^0.0.1-security",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-watch": "^4.3.10",
+    "map-stream": "^0.0.6",
+    "node-sass": "^3.10.1",
+    "path": "^0.12.7",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "merge-stream": "^1.0.0",
+    "plylog": "^0.4.0",
+    "polymer-build": "^0.4.0",
+    "babel-preset-es2015": "^6.18.0",
+    "css-slam": "^1.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7"
+  }
+}

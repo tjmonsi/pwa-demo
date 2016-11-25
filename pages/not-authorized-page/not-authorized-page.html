@@ -1,0 +1,26 @@
+<!-- Polymer dependencies -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- Style dependency -->
+<link rel="import" href="not-authorized-page-style.html">
+
+<dom-module id="not-authorized-page">
+  <template>
+    <style is="custom-style" include="not-authorized-page-style">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="not-authorized">
+      Not authorized
+    </div>
+
+  </template>
+  <script>
+    /*global Polymer*/
+    Polymer({
+      is: 'not-authorized-page'
+    })
+  </script>
+</dom-module>

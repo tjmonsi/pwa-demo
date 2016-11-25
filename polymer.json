@@ -1,0 +1,24 @@
+{
+  "entrypoint": "index.html",
+  "shell": "core/pwa-demo-app-shell.html",
+  "fragments": [
+    "pages/home-page/home-page.html",
+    "pages/view-three-page/view-three-page.html",
+    "pages/view-two-page/view-two-page.html",
+    "pages/not-authorized-page/not-authorized-page.html",
+    "pages/not-found-page/not-found-page.html"
+  ],
+  "sourceGlobs": [
+   "core/**/*",
+   "images/**/*",
+   "pages/**/*",
+   "web-components/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror-worker.js",
+    "bower_components/app-storage/app-indexeddb-mirror/common-worker-scope.js",
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

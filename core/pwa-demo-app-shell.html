@@ -1,0 +1,104 @@
+<!-- Polymer Global dependencies -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/qairoe-app-layout/qairoe-app-layout.html">
+<link rel="import" href="../bower_components/qairoe-app-router/qairoe-app-router.html">
+
+<!-- Custom Element dependencies -->
+
+<link rel="import" href="../web-components/pwa-demo-header/pwa-demo-header.html">
+<link rel="import" href="../web-components/pwa-demo-drawer/pwa-demo-drawer.html">
+
+<!--
+`<pwa-demo-app-shell>` is the main core element called in the index.html that
+renders the pages.
+
+Currently we have hard-coded the pages, they are lazily loaded inside the dom-module
+
+In typical use, just slap some `<pwa-demo-app-shell>` at the top of your body:
+
+    <body>
+      <pwa-demo-app-shell></pwa-demo-app-shell>
+
+Wham! It's all awesome now!
+-->
+<dom-module id="pwa-demo-app-shell">
+  <!-- Lazy loaded dependencies -->
+  <!-- LAZY LOADER STARTS HERE -->
+  <link rel="lazy-import" href="/pages/home-page/home-page.html" group="home-page">
+  <link rel="lazy-import" href="/pages/view-two-page/view-two-page.html" group="view-two-page">
+  <link rel="lazy-import" href="/pages/view-three-page/view-three-page.html" group="view-three-page">
+  <link rel="lazy-import" href="/pages/not-authorized-page/not-authorized-page.html" group="not-authorized-page">
+  <link rel="lazy-import" href="/pages/not-found-page/not-found-page.html" group="not-found-page">
+  <!-- LAZY LOADER ENDS HERE -->
+
+  <template>
+    <style is="custom-style">
+    </style>
+
+    <qairoe-app-layout scroll-progress="{{scrollProgress}}">
+
+      <pwa-demo-header 
+        main-header 
+        scroll-progress="{{scrollProgress}}" 
+        user="{{user}}"></pwa-demo-header>
+      <pwa-demo-drawer 
+        main-drawer 
+        navigation-list="[[navigationList]]" 
+        scroll-progress="{{scrollProgress}}" 
+        user="{{user}}"></pwa-demo-drawer>
+
+      <qairoe-app-router
+          main-content
+          parent-tag-name="pwa-demo-app-shell">
+
+        <!-- ROUTER STARTS HERE -->
+        <home-page route="/"></home-page>
+        <view-two-page route="/view-two"></view-two-page>
+        <view-three-page route="/view-three"></view-three-page>
+        <not-authorized-page route="not-authorized"></not-authorized-page>
+        <not-found-page route="not-found"></not-found-page>
+        <!-- ROUTER ENDS HERE -->
+
+      </qairoe-app-router>
+    </qairoe-app-layout>
+
+  </template>
+  <script>
+    /*global Polymer*/
+
+    Polymer({
+      is: 'pwa-demo-app-shell',
+
+      properties: {
+        navigationList: {
+          type: Array,
+          readOnly: true,
+          value: function() {
+            return [
+              {
+                label: 'Home',
+                url: '/'
+              },
+              {
+                label: 'View Two',
+                url: '/view-two'
+              },
+              {
+                label: 'View Three',
+                url: '/view-three'
+              }
+            ];
+          }
+        },
+        scrollProgress: {
+          type: Number
+        }
+      },
+
+      ready: function() {
+        this.fire('pwa-demo-app-shell-ready');
+
+      }
+    });
+  </script>
+</dom-module>

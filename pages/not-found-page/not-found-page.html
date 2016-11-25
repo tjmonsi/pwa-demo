@@ -1,0 +1,26 @@
+<!-- Polymer dependencies -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- Style dependency -->
+<link rel="import" href="not-found-page-style.html">
+
+<dom-module id="not-found-page">
+  <template>
+    <style is="custom-style" include="not-found-page-style">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="not-found">
+      Page not found
+    </div>
+
+  </template>
+  <script>
+    /*global Polymer*/
+    Polymer({
+      is: 'not-found-page'
+    });
+  </script>
+</dom-module>
