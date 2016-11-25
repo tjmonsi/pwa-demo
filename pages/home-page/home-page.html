@@ -7,6 +7,9 @@
 <!-- FOURTH: ADD SUMMARY WEB-COMPONENT -->
 <link rel="import" href="../../web-components/pwa-15-summary/pwa-15-summary.html">
 
+<!-- SEVEN: ADD INDEXEDDB -->
+<link rel="import" href="../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <!-- Style dependency -->
 <link rel="import" href="home-page-style.html">
 
@@ -21,8 +24,14 @@
     <!-- THIRD: ADD QUERY -->
     <firebase-query
       path="/article_list"
-      data="{{articles}}"
+      data="{{articlesLive}}"
     ></firebase-query>
+    
+    <app-indexeddb-mirror
+      key="article-list"
+      data="{{articlesLive}}"
+      persisted-data="{{articles}}">
+    </app-indexeddb-mirror>
     
     <template is="dom-repeat" items="[[articles]]">
       <!-- FOURTH: ADD SUMMARY WEB-COMPONENT -->

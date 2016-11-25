@@ -4,6 +4,9 @@
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/marked-element/marked-element.html">
 
+<!-- SEVEN: ADD INDEXEDDB -->
+<link rel="import" href="../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <dom-module id="pwa-15-summary">
   <template>
     <style is="custom-style">
@@ -22,8 +25,14 @@
 
     <firebase-document
       path="/articles/[[articleId]]/title"
-      data="{{title}}"
+      data="{{titleLive}}"
     ></firebase-document>
+    
+    <app-indexeddb-mirror
+      key="article-summary-[[articleId]]"
+      data="{{titleLive}}"
+      persisted-data="{{title}}">
+    </app-indexeddb-mirror>
     
     <template is="dom-if" if="[[title]]">
       <paper-material>

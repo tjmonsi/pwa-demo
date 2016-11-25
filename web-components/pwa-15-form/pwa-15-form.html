@@ -5,6 +5,9 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
 
+<!-- SEVEN: ADD INDEXEDDB -->
+<link rel="import" href="../../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+
 <dom-module id="pwa-15-form">
   <template>
     <style is="custom-style">
@@ -16,8 +19,14 @@
     <template is="dom-if" if="[[user]]">
         <firebase-document
           path="/articles/[[articleId]]"
-          data="{{article}}"
+          data="{{articleLive}}"
         ></firebase-document>
+        
+        <app-indexeddb-mirror
+          key="article-[[articleId]]"
+          data="{{articleLive}}"
+          persisted-data="{{article}}">
+        </app-indexeddb-mirror>
         
         <paper-input value="{{article.title}}" label="Title"></paper-input>
         <paper-textarea value="{{article.body}}" label="Body"></paper-textarea>
