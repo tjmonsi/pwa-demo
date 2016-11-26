@@ -4,12 +4,8 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../pwa-demo-icons/pwa-demo-icons.html">
-
-<!-- SECOND: Firebase auth -->
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
-<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../pwa-demo-icons/pwa-demo-icons.html">
 
 <!-- Style dependency -->
 <link rel="import" href="pwa-demo-header-style.html">
@@ -36,6 +32,54 @@
         <div main-title>PWA demo</div>
         
         <!-- SECOND: Firebase auth -->
+        <template is="dom-if" if="[[!user]]">
+          <paper-button on-tap="login">
+            Login
+          </paper-button>
+        </template>
+        
+        <template is="dom-if" if="[[user]]">
+          <paper-button on-tap="logout">
+            Logout
+          </paper-button>
+        </template>
+        
+      </app-toolbar>
+    </app-header>
+    
+    <!-- SECOND: MESSAGE -->
+    <paper-toast id="toaster"></paper-toast>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'pwa-demo-header',
+
+      // SECOND: Firebase auth
+      properties: {
+        user: {
+          type: Object,
+          notify: true,
+          value: false
+        }
+      },
+
+      _toggleDrawer: function() {
+        this.fire('toggle-drawer');
+      },
+      
+      // SECOND Firebase sign in
+      login: function() {
+        this.$$('#auth').signInWithPopup().then((result) => {
+          this.$$('#toaster').show('Hello ' + result.user.displayName);
+        });
+      },
+      
+      logout: function() {
+        this.$$('#auth').signOut().then(() => {
+          this.$.toaster.show('Goodbye!')
+        })
+      }
         <template is="dom-if" if="[[!user]]">
           <paper-button on-tap="login">
             Login
