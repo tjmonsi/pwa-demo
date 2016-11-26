@@ -80,54 +80,6 @@
           this.$.toaster.show('Goodbye!')
         })
       }
-        <template is="dom-if" if="[[!user]]">
-          <paper-button on-tap="login">
-            Login
-          </paper-button>
-        </template>
-        
-        <template is="dom-if" if="[[user]]">
-          <paper-button on-tap="logout">
-            Logout
-          </paper-button>
-        </template>
-      </app-toolbar>
-    </app-header>
-    
-    <!-- SECOND: MESSAGE -->
-    <paper-toast id="toaster"></paper-toast>
-  </template>
-
-  <script>
-    Polymer({
-      is: 'pwa-demo-header',
-
-      // SECOND: Firebase auth
-      properties: {
-        user: {
-          type: Object,
-          notify: true,
-          value: false
-        }
-      },
-
-      _toggleDrawer: function() {
-        this.fire('toggle-drawer');
-      },
-      
-      // SECOND Firebase sign in
-      login: function() {
-        this.$$('#auth').signInWithPopup().then((result) => {
-          this.$$('#toaster').show('Hello ' + result.user.displayName);
-        });
-      },
-      
-      logout: function() {
-        this.$$('#auth').signOut().then(() => {
-          this.$.toaster.show('Goodbye!')
-        })
-      }
-      
       
     });
   </script>
